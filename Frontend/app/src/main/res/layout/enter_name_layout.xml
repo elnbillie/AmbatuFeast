@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<com.rengwuxian.materialedittext.MaterialEditText
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/edt_name"
+    android:hint="Enter Your Name"
+    android:inputType="text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:met_textColorHint="@android:color/black"
+    app:met_baseColor="@android:color/black"
+    app:met_primaryColor="@android:color/black"
+    android:drawableEnd="@drawable/ic_user"
+    android:drawablePadding="10dp"
+    app:met_iconPadding="0dp"
+
+    />
+
