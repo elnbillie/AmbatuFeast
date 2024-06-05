@@ -3,7 +3,7 @@ package com.muhammadbillieelianjbusrs.ambatufeast.Model;
 public class Size {
     private int id;
     private String description;
-    private Float extraPrice;
+    private Double extraprice;
 
     public int getId() {
         return id;
@@ -21,11 +21,11 @@ public class Size {
         this.description = description;
     }
 
-    public Float getExtraPrice() {
-        return extraPrice;
+    public Double getExtraPrice() {
+        return extraprice;
     }
 
-    public void setExtraPrice(Float extraPrice) {
-        this.extraPrice = extraPrice;
+    public void setExtraPrice(Double extraPrice) {
+        this.extraprice = extraPrice;
     }
 }

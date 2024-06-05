@@ -4,7 +4,7 @@ public class Food {
     private int id;
     private String name,description,image;
     private Double price;
-    private boolean isSize,isAddon;
+    private boolean issize,isaddon;
     private int discount;
 
     public int getId() {
@@ -47,20 +47,20 @@ public class Food {
         this.price = price;
     }
 
-    public boolean isSize() {
-        return isSize;
+    public boolean isIssize() {
+        return issize;
     }
 
-    public void setSize(boolean size) {
-        isSize = size;
+    public void setIssize(boolean issize) {
+        this.issize = issize;
     }
 
-    public boolean isAddon() {
-        return isAddon;
+    public boolean isIsaddon() {
+        return isaddon;
     }
 
-    public void setAddon(boolean addon) {
-        isAddon = addon;
+    public void setIsaddon(boolean isaddon) {
+        this.isaddon = isaddon;
     }
 
     public int getDiscount() {

@@ -39,7 +39,7 @@ public class MyAddonAdapter extends RecyclerView.Adapter<MyAddonAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.ckb_addon.setText(new StringBuilder(addonList.get(position).getName())
+        holder.ckb_addon.setText(new StringBuilder(addonList.get(position).getDescription())
                 .append("+("+context.getString(R.string.money_sign))
                 .append(addonList.get(position).getExtraPrice())
                 .append(")"));

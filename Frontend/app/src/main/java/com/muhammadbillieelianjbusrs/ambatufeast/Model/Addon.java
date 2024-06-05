@@ -2,8 +2,8 @@ package com.muhammadbillieelianjbusrs.ambatufeast.Model;
 
 public class Addon {
     private int id;
-    private String name,description;
-    private float extraPrice;
+    private String description;
+    private float extraprice;
 
     public int getId() {
         return id;
@@ -13,13 +13,13 @@ public class Addon {
         this.id = id;
     }
 
-    public String getName() {
+    /*public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
+    }*/
 
     public String getDescription() {
         return description;
@@ -30,10 +30,10 @@ public class Addon {
     }
 
     public float getExtraPrice() {
-        return extraPrice;
+        return extraprice;
     }
 
     public void setExtraPrice(float extraPrice) {
-        this.extraPrice = extraPrice;
+        this.extraprice = extraprice;
     }
 }

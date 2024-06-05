@@ -1,6 +1,7 @@
 package com.muhammadbillieelianjbusrs.ambatufeast.Retrofit;
 
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.AddonModel;
+import com.muhammadbillieelianjbusrs.ambatufeast.Model.CreateOrderModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.FavoriteModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.FavoriteOnlyId;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.FavoriteOnlyIdModel;
@@ -8,6 +9,7 @@ import com.muhammadbillieelianjbusrs.ambatufeast.Model.FoodModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.MenuModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.RestaurantModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.SizeModel;
+import com.muhammadbillieelianjbusrs.ambatufeast.Model.UpdateOrderModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.UpdateUserModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.UserModel;
 
@@ -50,7 +52,7 @@ public interface INodeJS {
 
     @GET("size")
     Observable<SizeModel>getSizeOfFood(@Query("key") String apiKey,
-                                       @Query("foodid")int foodId);
+                                       @Query("foodId")int foodId);
 
     @GET("addon")
     Observable<AddonModel>getAddonOfFood(@Query("key") String apiKey,
@@ -64,6 +66,25 @@ public interface INodeJS {
     Observable<FavoriteOnlyIdModel>getFavoriteByRestaurant(@Query("key") String apiKey,
                                                            @Query("email")String email,
                                                            @Query("restaurantId") int restaurantId);
+
+    @POST("createOrder")
+    @FormUrlEncoded
+    Observable<CreateOrderModel>createOrder(@Field("key")String key,
+                                            @Field("email") String email,
+                                            @Field("orderName") String orderName,
+                                            @Field("orderAddress") String orderAddress,
+                                            @Field("orderDate") String orderDate,
+                                            @Field("restaurantId") int restaurantId,
+                                            @Field("transactionId") String transactionId,
+                                            @Field("cod") boolean cod,
+                                            @Field("totalPrice") double totalPrice,
+                                            @Field("numOfItem") int numOfItem);
+
+    @POST("updateOrder")
+    @FormUrlEncoded
+    Observable<UpdateOrderModel>updateOrder(@Field("key") String apiKey,
+                                            @Field("orderId") String orderId,
+                                            @Field("orderDetail") String orderDetail);
 
 
     @POST("login")

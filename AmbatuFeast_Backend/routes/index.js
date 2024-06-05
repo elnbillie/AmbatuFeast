@@ -571,7 +571,7 @@ router.post('/createOrder', async (req, res, next) => {
     if (req.body.key !== API_KEY) {
         res.send(JSON.stringify({ success: false, message: "Wrong API key" }));
     } else {
-        const order_phone = req.body.orderPhone;
+        const email = req.body.email;
         const order_name = req.body.orderName;
         const order_address = req.body.orderAddress;
         const order_date = req.body.orderDate;
@@ -580,21 +580,19 @@ router.post('/createOrder', async (req, res, next) => {
         const cod = req.body.cod;
         const total_price = req.body.totalPrice;
         const num_of_item = req.body.numOfItem;
-        const order_fbid = req.body.orderFBID;
 
-        if (order_fbid != null) {
+        if (email != null) {
             try {
                 const client = await pool.connect();
                 const queryText = `
                     INSERT INTO "Order" 
-                    (OrderFBID, OrderPhone, OrderName, OrderAddress, OrderStatus, OrderDate, RestaurantId, TransactionId, COD, TotalPrice, NumOfItem)
+                    (email, OrderName, OrderAddress, OrderStatus, OrderDate, RestaurantId, TransactionId, COD, TotalPrice, NumOfItem)
                     VALUES 
-                    ($1, $2, $3, $4, 0, $5, $6, $7, $8, $9, $10)
+                    ($1, $2, $3, 0, $4, $5, $6, $7, $8, $9)
                     RETURNING OrderId AS orderNumber;`;
 
                 const queryResult = await client.query(queryText, [
-                    order_fbid,
-                    order_phone,
+                    email,
                     order_name,
                     order_address,
                     order_date,
@@ -617,10 +615,12 @@ router.post('/createOrder', async (req, res, next) => {
                 res.send(JSON.stringify({ success: false, message: err.message }));
             }
         } else {
-            res.send(JSON.stringify({ success: false, message: "Missing orderFBID in body of POST request" }));
+            res.send(JSON.stringify({ success: false, message: "Missing email in body of POST request" }));
         }
     }
 });
+
+
 
 router.post('/updateOrder', async (req, res, next) => {
     console.log(req.body);
@@ -628,9 +628,9 @@ router.post('/updateOrder', async (req, res, next) => {
         return res.send(JSON.stringify({ success: false, message: "Wrong API key" }));
     }
 
-    const { orderId, OrderDetail } = req.body;
+    const { orderId, orderDetail } = req.body;
 
-    if (!orderId || !OrderDetail) {
+    if (!orderId || !orderDetail) {
         return res.send(JSON.stringify({ success: false, message: "Missing orderId or orderDetail in body of POST request" }));
     }
 
@@ -645,7 +645,7 @@ router.post('/updateOrder', async (req, res, next) => {
             ($1, $2, $3, $4, $5, $6, $7, $8);
         `;
 
-        for (const detail of OrderDetail) {
+        for (const detail of orderDetail) {
             await client.query(queryText, [
                 orderId,
                 detail.foodId,

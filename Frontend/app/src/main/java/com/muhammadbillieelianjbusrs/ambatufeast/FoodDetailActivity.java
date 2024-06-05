@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -173,7 +174,7 @@ public class FoodDetailActivity extends AppCompatActivity {
             txt_money.setText(String.valueOf(originalPrice));
             txt_description.setText(event.getFood().getDescription());
             Picasso.get().load(event.getFood().getImage()).into(img_food_detail);
-            if(event.getFood().isSize() && event.getFood().isAddon())
+            if(event.getFood().isIssize() && event.getFood().isIsaddon())
             {
                 //Load size dan Addon dari server
                 dialog.show();
@@ -213,7 +214,7 @@ public class FoodDetailActivity extends AppCompatActivity {
             }
             else
             {
-                if(event.getFood().isSize())
+                if(event.getFood().isIssize())
                 {
                     compositeDisposable.add(
                             ambatufeastAPI.getSizeOfFood(Common.API_KEY,event.getFood().getId())
@@ -221,6 +222,7 @@ public class FoodDetailActivity extends AppCompatActivity {
                                     .observeOn(AndroidSchedulers.mainThread())
                                     .subscribe(sizeModel -> {
                                                 //send local event bus
+                                                Log.d("SizeLoadEvent", "Event Posted: " + sizeModel.getResult());
                                                 EventBus.getDefault().post(new SizeLoadEvent(true,sizeModel.getResult()));
 
                                             },
@@ -231,7 +233,7 @@ public class FoodDetailActivity extends AppCompatActivity {
 
                     );
                 }
-                if(event.getFood().isAddon())
+                if(event.getFood().isIsaddon())
                 {
                     dialog.show();
                     compositeDisposable.add(
@@ -255,27 +257,29 @@ public class FoodDetailActivity extends AppCompatActivity {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void displaySize(SizeLoadEvent event)
-    {
-        if(event.isSuccces())
-        {
+    public void displaySize(SizeLoadEvent event) {
+        if(event.isSuccces()) {
+            rdi_group_size.removeAllViews();
+
             //create radio button berdasarkan size length
-            for(Size size : event.getSizeList())
-            {
+            for(Size size : event.getSizeList()) {
+                Log.d("SizeLoadEvent", "Size list: " + event.getSizeList());
                 RadioButton radioButton = new RadioButton(this);
                 radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                        if(b)
-                            sizePrice = size.getExtraPrice();
-                        else
-                            sizePrice = -size.getExtraPrice();
-                        calculatePrice();
-                        sizeSelected = size.getDescription();
-
+                        if (b) {
+                            // Reset sizePrice to 0 before adding the new sizePrice
+                            sizePrice = 0.0;
+                            if (size.getExtraPrice() != null) {
+                                sizePrice = size.getExtraPrice();
+                            }
+                            sizeSelected = size.getDescription();
+                            calculatePrice();
+                        }
                     }
                 });
-                LinearLayout.LayoutParams params =  new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT,1.0f);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
                 radioButton.setLayoutParams(params);
                 radioButton.setText(size.getDescription());
                 radioButton.setTag(size.getExtraPrice());
@@ -283,7 +287,6 @@ public class FoodDetailActivity extends AppCompatActivity {
                 rdi_group_size.addView(radioButton);
             }
         }
-
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
