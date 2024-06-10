@@ -35,6 +35,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Pattern;
+
 import io.reactivex.rxjava3.core.Observable;
 
 
@@ -94,6 +96,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void registerUser(String email, String password) {
+        if (!isValidEmail(email)) {
+            Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show();
+            return;
+        }
         View enter_name_view = LayoutInflater.from(this).inflate(R.layout.enter_name_layout, null);
         MaterialEditText edit_name = enter_name_view.findViewById(R.id.edt_name);
 
@@ -128,6 +134,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void loginUser(String email, String password) {
+        if (!isValidEmail(email)) {
+            Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show();
+            return;
+        }
         compositeDisposable.add(
                 myAPI.loginUser(email, password)
                         .subscribeOn(Schedulers.io())
@@ -176,6 +186,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private boolean isValidEmail(String email) {
+        String emailPattern = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+        return Pattern.matches(emailPattern, email);
+    }
 
 
 }
