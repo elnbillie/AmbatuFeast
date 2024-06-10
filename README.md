@@ -32,13 +32,13 @@ To install and run this project locally, follow these steps:
    ```
 
 2. **Install depedencies:**
-```bash
-npm install
-```
+    ```bash
+    npm install
+    ```
 3. **Start the server:**
-```bash
-node app.js
-```
+    ```bash
+    node app.js
+    ```
 4. **Run the Android application:**:
 -   Open the project in the Android Studio.
 -   Connect your Android device or start an emulator.
