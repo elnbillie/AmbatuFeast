@@ -10,7 +10,8 @@
         android:weightSum="10"
         android:padding="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/border">
 
         <ImageView
             android:id="@+id/img_food"

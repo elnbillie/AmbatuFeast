@@ -89,7 +89,7 @@ public class FavoriteActivity extends AppCompatActivity {
                     dialog.dismiss();
                 }, throwable -> {
                     dialog.dismiss();
-                    Toast.makeText(this, "[GET FAVORITE]"+throwable.getMessage(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "[GET FAVORITE]"+throwable.getMessage(), Toast.LENGTH_SHORT).show();
                 }));
     }
 
