@@ -82,9 +82,13 @@ public class PlaceOrderActivity extends AppCompatActivity implements com.wdullae
 
     @Override
     protected void onDestroy() {
+        if (dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
         compositeDisposable.clear();
         super.onDestroy();
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -234,46 +238,44 @@ public class PlaceOrderActivity extends AppCompatActivity implements com.wdullae
                                                                                 homeActivity.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                                                 startActivity(homeActivity);
                                                                                 finish();
+                                                                                dialog.dismiss(); // Dismiss the dialog here
                                                                             }
 
                                                                             @Override
                                                                             public void onError(Throwable e) {
                                                                                 Log.e("PlaceOrderActivity", "cleanCart onError", e);
                                                                                 Toast.makeText(PlaceOrderActivity.this, "[CLEAN CART]" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                                                dialog.dismiss(); // Dismiss the dialog here
                                                                             }
                                                                         });
                                                             } else {
                                                                 Log.e("PlaceOrderActivity", "updateOrder failed: " + updateOrderModel.getMessage());
-                                                                if (dialog.isShowing())
-                                                                    dialog.dismiss();
+                                                                dialog.dismiss(); // Dismiss the dialog here
                                                             }
                                                         }, throwable -> {
                                                             Log.e("PlaceOrderActivity", "updateOrder onError", throwable);
-                                                            if (dialog.isShowing())
-                                                                dialog.dismiss();
+                                                            dialog.dismiss(); // Dismiss the dialog here
                                                         })
                                                 );
                                             } else {
                                                 Log.e("PlaceOrderActivity", "createOrder failed: " + createOrderModel.getMessage());
-                                                if (dialog.isShowing())
-                                                    dialog.dismiss();
+                                                dialog.dismiss(); // Dismiss the dialog here
                                                 Toast.makeText(this, "[CREATE ORDER]" + createOrderModel.getMessage(), Toast.LENGTH_SHORT).show();
                                             }
                                         }, throwable -> {
                                             Log.e("PlaceOrderActivity", "createOrder onError", throwable);
-                                            if (dialog.isShowing())
-                                                dialog.dismiss();
+                                            dialog.dismiss(); // Dismiss the dialog here
                                             Toast.makeText(this, "[CREATE ORDER]" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                                         })
                         );
                     }, throwable -> {
                         Log.e("PlaceOrderActivity", "getAllCart onError", throwable);
-                        if (dialog.isShowing())
-                            dialog.dismiss();
+                        dialog.dismiss(); // Dismiss the dialog here
                         Toast.makeText(this, "[GET ALL CART]" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
                     }));
         }
     }
+
 
 
 

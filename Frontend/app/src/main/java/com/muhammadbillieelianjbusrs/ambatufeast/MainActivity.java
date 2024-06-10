@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -43,8 +45,9 @@ public class MainActivity extends AppCompatActivity {
     INodeJS myAPI;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    MaterialEditText edt_email, edt_password;
+    EditText edt_email, edt_password;
     MaterialButton btn_register,btn_login;
+
 
     @Override
     protected void onStop(){
@@ -71,8 +74,8 @@ public class MainActivity extends AppCompatActivity {
         btn_login = (MaterialButton)findViewById(R.id.login_button);
         btn_register = (MaterialButton)findViewById(R.id.register_button);
 
-        edt_email = (MaterialEditText) findViewById(R.id.edt_email);
-        edt_password = (MaterialEditText) findViewById(R.id.edt_password);
+        edt_email = findViewById(R.id.edt_email);
+        edt_password =findViewById(R.id.edt_password);
 
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -174,7 +174,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_nearby){
 
         } else if (id == R.id.nav_order_history){
-
+            startActivity(new Intent(HomeActivity.this,ViewOrderActivity.class));
         } else if (id == R.id.nav_update_info){
 
         }

@@ -7,6 +7,7 @@ import com.muhammadbillieelianjbusrs.ambatufeast.Model.FavoriteOnlyId;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.FavoriteOnlyIdModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.FoodModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.MenuModel;
+import com.muhammadbillieelianjbusrs.ambatufeast.Model.OrderModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.RestaurantModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.SizeModel;
 import com.muhammadbillieelianjbusrs.ambatufeast.Model.UpdateOrderModel;
@@ -66,6 +67,10 @@ public interface INodeJS {
     Observable<FavoriteOnlyIdModel>getFavoriteByRestaurant(@Query("key") String apiKey,
                                                            @Query("email")String email,
                                                            @Query("restaurantId") int restaurantId);
+
+    @GET("order")
+    Observable<OrderModel>getOrder(@Query("key") String key,
+                                   @Query("email")String email);
 
     @POST("createOrder")
     @FormUrlEncoded

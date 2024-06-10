@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -134,6 +137,12 @@ public class FoodDetailActivity extends AppCompatActivity {
                                     })
 
             );
+        });
+        btn_view_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(FoodDetailActivity.this,CartListActivity.class));
+            }
         });
     }
 
@@ -265,6 +274,8 @@ public class FoodDetailActivity extends AppCompatActivity {
             for(Size size : event.getSizeList()) {
                 Log.d("SizeLoadEvent", "Size list: " + event.getSizeList());
                 RadioButton radioButton = new RadioButton(this);
+                radioButton.setTextColor(Color.BLACK);
+                radioButton.setButtonTintList(ColorStateList.valueOf(Color.parseColor("#800080")));
                 radioButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

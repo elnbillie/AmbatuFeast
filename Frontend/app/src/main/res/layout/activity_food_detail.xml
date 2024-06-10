@@ -25,7 +25,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    android:background="@color/button_color"
+                    android:background="@color/purple"
                     app:titleTextColor="@android:color/white"/>
 
             </com.google.android.material.appbar.AppBarLayout>
@@ -39,7 +39,8 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp">
+                android:layout_margin="8dp"
+                android:backgroundTint="@color/white">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,6 +62,7 @@
                             android:id="@+id/txt_money"
                             android:text="200.0"
                             android:textSize="18sp"
+                            android:textColor="@color/black"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -71,6 +73,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical|right"
+                            android:backgroundTint="@color/purple"
                             android:src="@drawable/ic_shopping_cart_button_color_24dp"/>
 
                     </LinearLayout>
@@ -90,6 +93,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/size"
+                            android:textColor="@color/black"
                             android:textSize="22sp"/>
 
                         <RadioGroup
@@ -126,7 +130,9 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/add_on"
-                                android:textSize="22sp"/>
+                                android:textSize="22sp"
+                                android:textColor="@color/black"
+                                />
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -167,13 +173,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/description"
-                            android:textStyle="bold"/>
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/txt_description"
-                            android:text="Description"/>
+                            android:textColor="@color/black"
+                            android:text="Description"
+                            />
                     </LinearLayout>
 
                 </LinearLayout>

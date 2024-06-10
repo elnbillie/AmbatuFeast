@@ -2,14 +2,16 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/white">
 
     <LinearLayout
         android:orientation="horizontal"
         android:weightSum="10"
         android:padding="8dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white">
 
         <ImageView
             android:id="@+id/img_food"
@@ -29,7 +31,7 @@
             <TextView
                 android:id="@+id/txt_food_name"
                 android:text="Chicken Briyani"
-                android:textColor="@color/button_color"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -39,13 +41,14 @@
                 android:textSize="14sp"
                 android:textStyle="italic"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/txt_restaurant_name"
                 android:text="Restaurant A"
                 android:textSize="22sp"
-                android:textColor="@color/button_color"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

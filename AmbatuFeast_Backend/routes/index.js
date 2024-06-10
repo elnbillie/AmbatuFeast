@@ -502,18 +502,17 @@ router.get('/order', async (req, res, next) => {
     if (req.query.key != API_KEY) {
         res.send(JSON.stringify({ success: false, message: "Wrong API Key" }));
     } else {
-        var order_fbid = req.query.orderFBID;
-        if (order_fbid != null) {
+        var email = req.query.email;
+        if (email != null) {
             try {
                 const client = await pool.connect();
 
                 const queryResult = await pool.query(
-                    'SELECT orderId, orderFBID, orderPhone, orderName, orderAddress, orderStatus, ' +
+                    'SELECT orderId, email, orderName, orderAddress, orderStatus, ' +
                     'orderDate, restaurantId, transactionId, cod, totalPrice, numOfItem ' +
-                    'FROM "Order" WHERE orderFBID = $1',
-                    [order_fbid]
+                    'FROM "Order" WHERE email = $1',
+                    [email]
                 );
-
 
                 client.release();
 
@@ -526,12 +525,12 @@ router.get('/order', async (req, res, next) => {
                 res.status(500);
                 res.send(JSON.stringify({ success: false, message: err.message }));
             }
-        }
-        else {
-            res.send(JSON.stringify({ success: false, message: "Missing orderFBID in query" }));
+        } else {
+            res.send(JSON.stringify({ success: false, message: "Missing email in query" }));
         }
     }
 });
+
 
 router.get('/orderDetail', async (req, res, next) => {
     console.log(req.query);

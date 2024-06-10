@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/ckb_addon"
-    android:text="Sauce 01">
+    android:text="Sauce 01"
+    android:textColor="@color/black">
 
 </CheckBox>
